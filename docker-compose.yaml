@@ -1,0 +1,21 @@
+version: "3"
+services:
+  api:
+    container_name: line-webhook
+    build: .
+    volumes:
+      - .:/usr/src/app
+      - node_modules:/usr/src/app/node_modules
+    networks:
+      - backend
+    ports:
+      - "3000:3000"
+    environment:
+      - PORT=3000
+    command: yarn start
+
+networks:
+  backend:
+    driver: bridge
+volumes:
+  node_modules:
